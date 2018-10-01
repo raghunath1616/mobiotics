@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'carrara-bol';
+    src: url('./carrara-bol-webfont.woff2') format('woff2'), url('./carrara-bol-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'carrara-reg';
+    src: url('./carrara-reg-webfont.woff2') format('woff2'), url('./carrara-reg-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
