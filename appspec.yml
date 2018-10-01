@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /radius/radiusApp/
+    destination: /radius/association/
 hooks:
    AfterInstall:
     - location: install.sh
