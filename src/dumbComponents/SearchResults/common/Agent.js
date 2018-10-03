@@ -122,9 +122,9 @@ class Agent extends Component {
               </StyledParagraph>
             </StyledBox>
             <StyledBox width={[1, 1, 1 / 2]}>
-              {agent.crs_designee_since !== null
-                && agent.crs_designee_since !== "0000-00-00" && (
-                <StyledParagraph>{`CRS Designee since ${getYear(agent.crs_designee_since)}`}</StyledParagraph>
+              {agent.realtor_since_year !== null
+                && agent.realtor_since_year !== "0000-00-00" && (
+                <StyledParagraph>{`Agent since ${agent.realtor_since_year}`}</StyledParagraph>
               )}
             </StyledBox>
             <StyledViewProfile>

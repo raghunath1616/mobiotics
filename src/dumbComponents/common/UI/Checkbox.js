@@ -32,7 +32,7 @@ const StyledCheckbox = styled.input`
 
   // Box hover
   &:hover + label:before {
-    background: #dadada;
+    background: #d8d8d8;
   }
 
   // Box checked
