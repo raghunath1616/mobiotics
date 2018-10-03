@@ -44,7 +44,7 @@ const StyledHeading = styled(Heading)`
   font-style: normal;
   font-stretch: normal;
   line-height: 1.08;
-  color: #11adf3;
+  color: #23adf3;
   text-align: left;
   margin-top: 0;
 `

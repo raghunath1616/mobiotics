@@ -33,8 +33,8 @@ const HeroImage = styled.div`
 `
 
 const StyledButton = styled(Button)`
-  background: #f77577;
-  border-color: #f77577;
+  background: #2684ff;
+  border-color: #2684ff;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 2px;
@@ -91,13 +91,13 @@ class Home extends Component {
     const { location } = this.state
     history.push("/search-agents", {
       fullname: document.getElementById("txtName").value,
-      location: location,
+      location,
       searchString: document.getElementById("txtAutocomplete").value,
     })
   }
 
   handleLocation = (location) => {
-    this.setState({ location: location })
+    this.setState({ location })
   }
 
   render() {

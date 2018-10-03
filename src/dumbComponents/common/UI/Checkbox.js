@@ -27,7 +27,7 @@ const StyledCheckbox = styled.input`
     vertical-align: text-top;
     width: 18px;
     height: 18px;
-    border: 1px solid #dadada;
+    border: 1px solid #d8d8d8;
   }
 
   // Box hover
@@ -37,7 +37,7 @@ const StyledCheckbox = styled.input`
 
   // Box checked
   &:checked + label:before {
-    background: #f35429;
+    background: #2684ff;
   }
 
   // Disabled state label.

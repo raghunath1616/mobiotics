@@ -16,16 +16,18 @@ const StyledFlex = styled(Flex)`
   border-radius: 6px;
   height: 140px;
   width: 140px;
-  background-color: #11adf3;
+  background-color: #2684ff;
   text-align: center;
 `
 
 const ProfileImage = ({
-  image, name = "",
-  onErrorLoad,
-  allowImage,
-}) => (!image || !allowImage)
-  ? <StyledFlex alignItems="center" justifyContent="center">{getInitials(name)}</StyledFlex>
-  : <Image src={image} alt="association profile" onError={onErrorLoad} />
+  image, name = "", onErrorLoad, allowImage,
+}) => !image || !allowImage ? (
+  <StyledFlex alignItems="center" justifyContent="center">
+    {getInitials(name)}
+  </StyledFlex>
+) : (
+  <Image src={image} alt="association profile" onError={onErrorLoad} />
+)
 
 export default ProfileImage

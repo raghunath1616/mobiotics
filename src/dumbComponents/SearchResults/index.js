@@ -9,6 +9,7 @@ import Filters, { Shimmer as FilterHolderShimmer } from "dumbComponents/SearchRe
 import { mapLocation } from "services/Utils"
 import Pagination from "rc-pagination"
 import styled from "styled-components"
+import Heading from "../common/Typography/Heading"
 require("style-loader!css-loader!rc-pagination/assets/index.css")
 
 const StyledFlex = styled(Flex)`
@@ -22,6 +23,13 @@ const StyledParagraph = styled(Paragraph)`
   padding-top: 20px;
   margin-bottom: 0;
   text-align: right;
+`
+
+const EmptyStateWrapper = styled(Flex)`
+  align-items : center;
+  justify-content: center;
+  flex-direction: column;
+  height: 60vh;
 `
 
 const limit = 15
@@ -139,20 +147,27 @@ class SearchResults extends Component {
             </Flex>
             <Flex>
               <Box width={[1, 1, 2 / 3]}>
-                {!isFetchingAgents && agents.map(agent => <Agent agent={agent} key={agent.id} />)}
+                {
+                  !isFetchingAgents
+                  && (agentsTotalCount > 0
+                    ? agents.map(agent => <Agent agent={agent} key={agent.id} />)
+                    : <EmptyState />)
+                }
 
                 {isFetchingAgents
                 && <AgentHolderShimmer shimmerIterator={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]} />}
 
-                <StyledFlex alignItems="center" justifyContent="center" style={{ marginTop: "30px" }}>
-                  <Pagination
-                    className="ant-pagination"
-                    onChange={this.fetchPaginatedResults}
-                    current={currentPage}
-                    pageSize={pageSize}
-                    total={agentsTotalCount}
-                  />
-                </StyledFlex>
+                {agentsTotalCount > 0 && (
+                  <StyledFlex alignItems="center" justifyContent="center" style={{ marginTop: "30px" }}>
+                    <Pagination
+                      className="ant-pagination"
+                      onChange={this.fetchPaginatedResults}
+                      current={currentPage}
+                      pageSize={pageSize}
+                      total={agentsTotalCount}
+                    />
+                  </StyledFlex>
+                )}
               </Box>
               <Box width={1 / 3}>
                 {!isFilterFetching && <Filters />}
@@ -165,5 +180,12 @@ class SearchResults extends Component {
     )
   }
 }
+
+const EmptyState = () => (
+  <EmptyStateWrapper>
+    <img src="https://s3.amazonaws.com/icons.agentdesks.com/mail_api/no-message%402x.png" alt="empty state" />
+    <Heading type="h4">No agents found</Heading>
+  </EmptyStateWrapper>
+)
 
 export default Container(SearchResults)

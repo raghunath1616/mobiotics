@@ -23,8 +23,8 @@ const StyledImage = styled.img`
 `
 
 const StyledButton = styled(Button)`
-  background: #f77577;
-  border-color: #f77577;
+  background: #2684ff;
+  border-color: #2684ff;
   padding: 15px 15px;
   border-radius: 0;
   @media (max-width: 500px) {
