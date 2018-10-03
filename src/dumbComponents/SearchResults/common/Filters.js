@@ -23,36 +23,43 @@ class Filters extends Component {
         display: "Speciality",
         limit: 10,
         expand: false,
+        value: "specialties",
       },
       languages: {
         display: "Languages",
         limit: 10,
         expand: false,
+        value: "languages",
       },
       designations: {
         display: "Designations",
         limit: 10,
         expand: false,
+        value: "designation",
       },
       certifications: {
         display: "Certifications",
         limit: 10,
         expand: false,
+        value: "certifications",
       },
       citiesServed: {
         display: "Neighborhoods Served",
         limit: 10,
         expand: false,
+        value: "citiesServed",
       },
       counties: {
         display: "Counties Served",
         limit: 10,
         expand: false,
+        value: "countiesServed",
       },
       companies: {
         display: "Company",
         limit: 10,
         expand: false,
+        value: "companies",
       },
     },
   }
@@ -64,7 +71,7 @@ class Filters extends Component {
       ...mapper,
       [title]: {
         ...mapper[title],
-        expand: mapper[title].expand = !mapper[title].expand,
+        expand: (mapper[title].expand = !mapper[title].expand),
         limit: mapper[title].limit > 10 ? 10 : facades[title].length,
       },
     }
@@ -74,17 +81,16 @@ class Filters extends Component {
 
   filterResults = (key, item) => {
     const { request, fetchAgents } = this.props
-    let newRequest = { ...request }
-    if (!newRequest[key]) {
-      newRequest[key] = []
+    const { mapper } = this.state
+    const newRequest = { ...request }
+    if (!newRequest[mapper[key].value]) {
+      newRequest[mapper[key].value] = []
     }
-    newRequest = {
-      ...newRequest,
-      facade: false,
-      [key]: (newRequest[key] && newRequest[key].indexOf(item.key) > -1)
-        ? newRequest[key].filter(filterItem => filterItem !== item.key)
-        : newRequest[key].concat(item.key),
-    }
+    newRequest.facade = false
+    newRequest[mapper[key].value] = newRequest[mapper[key].value]
+    && newRequest[mapper[key].value].indexOf(item.key) > -1
+      ? newRequest[mapper[key].value].filter(filterItem => filterItem !== item.key)
+      : newRequest[mapper[key].value].concat(item.key)
     fetchAgents(newRequest)
   }
 
@@ -97,20 +103,21 @@ class Filters extends Component {
           <Flex justifyContent="center">
             <Heading type="h4">FILTERS</Heading>
           </Flex>
-          {facades && Object.keys(mapper).map(key => (
-            <React.Fragment key={key}>
-              <Flex>
-                <Heading type="h5">{mapper[key].display}</Heading>
-              </Flex>
-              <FilterContainer
-                filter={facades[key]}
-                mapper={mapper}
-                title={key}
-                onAction={this.expandOrCollapse}
-                onFilter={this.filterResults}
-              />
-            </React.Fragment>
-          ))}
+          {facades
+            && Object.keys(mapper).map(key => (
+              <React.Fragment key={key}>
+                <Flex>
+                  <Heading type="h5">{mapper[key].display}</Heading>
+                </Flex>
+                <FilterContainer
+                  filter={facades[key]}
+                  mapper={mapper}
+                  title={key}
+                  onAction={this.expandOrCollapse}
+                  onFilter={this.filterResults}
+                />
+              </React.Fragment>
+            ))}
         </Box>
       </StyledFlex>
     )
@@ -121,9 +128,9 @@ const ShimmerItem = (props) => {
   const { iterator } = props
   return (
     <Box>
-      {
-        iterator.map(item => <ShimmerBox key={item} w="200px" h="10px" mb="20px" />)
-      }
+      {iterator.map(item => (
+        <ShimmerBox key={item} w="200px" h="10px" mb="20px" />
+      ))}
     </Box>
   )
 }
@@ -134,20 +141,16 @@ export const Shimmer = () => (
       <Flex>
         <ShimmerBox w="140px" h="20px" style={{ margin: "30px auto" }} />
       </Flex>
-      {
-        [1, 2, 3, 4, 5, 6, 7].map(item => (
-          <div key={item}>
-            <Flex>
-              <ShimmerBox w="140px" h="16px" mb="20px" />
-            </Flex>
-            <ShimmerItem iterator={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
-          </div>
-        ))
-      }
+      {[1, 2, 3, 4, 5, 6, 7].map(item => (
+        <div key={item}>
+          <Flex>
+            <ShimmerBox w="140px" h="16px" mb="20px" />
+          </Flex>
+          <ShimmerItem iterator={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+        </div>
+      ))}
     </Box>
   </StyledFlex>
 )
-
-
 
 export default Container(Filters)
