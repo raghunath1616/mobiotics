@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 import { Flex, Box } from "@rebass/grid"
-import getYear from "date-fns/get_year"
+import FadeIn from "react-fade-in/lib/FadeIn"
 import Heading from "dumbComponents/common/Typography/Heading"
 import Paragraph from "dumbComponents/common/Typography/Paragraph"
 import { ShimmerBox } from "shared/styles/animation"
@@ -93,48 +93,54 @@ class Agent extends Component {
     const { agent } = this.props
     const { allowImage } = this.state
     return (
-      <StyledFlex>
-        <StyledBox width={[1, 1, 1 / 5]}>
-          <ProfileImage
-            image={agent.agent_image}
-            name={agent.lastname !== null ? `${agent.firstname} ${agent.lastname}` : agent.firstname}
-            allowImage={allowImage}
-            onErrorLoad={this.onErrorLoad}
-          />
-        </StyledBox>
-        <StyledBox width={[1, 1, 4 / 5]}>
-          <StyledFlexFlow alignItems="center" justifyContent="space-between" style={{ margin: "0 10px" }}>
-            <StyledAnchor href={`${agent.profile_url}?isAreaa=true`} style={{ textDecoration: "none" }} target="_blank">
-              <StyledHeading>{`${agent.firstname} ${agent.lastname}`}</StyledHeading>
-            </StyledAnchor>
-            <StyledAnchor href={`${agent.profile_url}?isAreaa=true`} target="_blank">
-              View profile
-            </StyledAnchor>
-          </StyledFlexFlow>
-          <StyledFlexFlow>
-            <StyledBox width={[1, 1, 1 / 2]}>
-              <StyledParagraph>{agent.agency_name}</StyledParagraph>
-              <StyledParagraph>{agent.display_email}</StyledParagraph>
-              <StyledParagraph>{agent.phone}</StyledParagraph>
-              <StyledParagraph>
-                {agent.office_city}
-                {agent.office_city !== null ? `, ${agent.office_city}` : ""}
-              </StyledParagraph>
-            </StyledBox>
-            <StyledBox width={[1, 1, 1 / 2]}>
-              {agent.realtor_since_year !== null
-                && agent.realtor_since_year !== "0000-00-00" && (
-                <StyledParagraph>{`Agent since ${agent.realtor_since_year}`}</StyledParagraph>
-              )}
-            </StyledBox>
-            <StyledViewProfile>
-              <StyledMobileAnchor href={`${agent.profile_url}?isAreaa=true`} target="_blank">
+      <FadeIn>
+        <StyledFlex>
+          <StyledBox width={[1, 1, 1 / 5]}>
+            <ProfileImage
+              image={agent.agent_image}
+              name={agent.lastname !== null ? `${agent.firstname} ${agent.lastname}` : agent.firstname}
+              allowImage={allowImage}
+              onErrorLoad={this.onErrorLoad}
+            />
+          </StyledBox>
+          <StyledBox width={[1, 1, 4 / 5]}>
+            <StyledFlexFlow alignItems="center" justifyContent="space-between" style={{ margin: "0 10px" }}>
+              <StyledAnchor
+                href={`${agent.profile_url}?isAreaa=true`}
+                style={{ textDecoration: "none" }}
+                target="_blank"
+              >
+                <StyledHeading>{`${agent.firstname} ${agent.lastname}`}</StyledHeading>
+              </StyledAnchor>
+              <StyledAnchor href={`${agent.profile_url}?isAreaa=true`} target="_blank">
                 View profile
-              </StyledMobileAnchor>
-            </StyledViewProfile>
-          </StyledFlexFlow>
-        </StyledBox>
-      </StyledFlex>
+              </StyledAnchor>
+            </StyledFlexFlow>
+            <StyledFlexFlow>
+              <StyledBox width={[1, 1, 1 / 2]}>
+                <StyledParagraph>{agent.agency_name}</StyledParagraph>
+                <StyledParagraph>{agent.display_email}</StyledParagraph>
+                <StyledParagraph>{agent.phone}</StyledParagraph>
+                <StyledParagraph>
+                  {agent.office_city}
+                  {agent.office_city !== null ? `, ${agent.office_city}` : ""}
+                </StyledParagraph>
+              </StyledBox>
+              <StyledBox width={[1, 1, 1 / 2]}>
+                {agent.realtor_since_year !== null
+                  && agent.realtor_since_year !== "0000-00-00" && (
+                  <StyledParagraph>{`Agent since ${agent.realtor_since_year}`}</StyledParagraph>
+                )}
+              </StyledBox>
+              <StyledViewProfile>
+                <StyledMobileAnchor href={`${agent.profile_url}?isAreaa=true`} target="_blank">
+                  View profile
+                </StyledMobileAnchor>
+              </StyledViewProfile>
+            </StyledFlexFlow>
+          </StyledBox>
+        </StyledFlex>
+      </FadeIn>
     )
   }
 }

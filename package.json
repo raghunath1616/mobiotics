@@ -57,6 +57,7 @@
     "react": "^16.4.1",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.4.1",
+    "react-fade-in": "^0.1.6",
     "react-onclickoutside": "^6.7.1",
     "react-popper": "^1.0.2",
     "react-redux": "^5.0.7",

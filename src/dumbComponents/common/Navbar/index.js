@@ -113,7 +113,7 @@ const Navbar = () => (
         <NavCollapse>
           <NavRight>
             <NavItem>
-              <NavAnchor href={`${CRM_URL}app/clients?type=Buyer`}>
+              <NavAnchor href={`${RADIUS_URL}/association/areaa/login`}>
                 <span>Login</span>
               </NavAnchor>
             </NavItem>
