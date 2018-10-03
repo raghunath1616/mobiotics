@@ -2,15 +2,11 @@ import React, { Component } from "react"
 import styled from "styled-components"
 import Container from "container/SearchAgents"
 import { Flex, Box } from "@rebass/grid"
+import Checkbox from "dumbComponents/common/UI/Checkbox"
 
 const StyledBox = styled(Box)`
   margin: 8px 0;
 `
-const StyledLabel = styled.label`
-  color: #676a6c;
-  font-size: 16px;
-`
-
 const ShowMoreWrapper = styled(Box)`
   text-align: right;
   margin: 5px 0;
@@ -53,11 +49,11 @@ class FilterContainer extends Component {
     return (
       <WrapperFilter>
         {
-          filter && filter.slice(0, mapper[title].limit).map(filterItem => (
+          filter && filter.slice(0, mapper[title].limit).map((filterItem, index) => (
             <StyledBox key={filterItem.key}>
-              <input type="checkbox" onChange={() => onFilter(title, filterItem)} />
-              &nbsp;
-              <StyledLabel>{`${filterItem.key} (${filterItem.doc_count})`}</StyledLabel>
+              <Checkbox id={`${title}-${index}`} onChange={() => onFilter(title, filterItem)}>
+                {`${filterItem.key} (${filterItem.doc_count})`}
+              </Checkbox>
             </StyledBox>
           ))
         }

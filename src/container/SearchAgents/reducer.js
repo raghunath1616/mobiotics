@@ -34,8 +34,8 @@ export default function SearchAgentsReducer(state = initState, action) {
         ...state,
         isFetchingAgents: false,
         isFilterFetching: false,
-        agents: agents,
-        agentsTotalCount: agentsTotalCount,
+        agents,
+        agentsTotalCount,
       }
     }
 

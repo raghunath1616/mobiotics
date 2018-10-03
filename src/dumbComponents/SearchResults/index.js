@@ -24,7 +24,7 @@ const StyledParagraph = styled(Paragraph)`
   text-align: right;
 `
 
-const limit = 13
+const limit = 15
 class SearchResults extends Component {
   state = {
     place: null,
@@ -129,8 +129,7 @@ class SearchResults extends Component {
               <Box width={[1, 1, 2 / 3]}>
                 <StyledParagraph>
                   <b>{agentsTotalCount}</b>
-                  &nbsp;
-                  results
+                  &nbsp;results
                 </StyledParagraph>
               </Box>
               <StyledBox width={[1, 1, 1 / 3]}>
@@ -142,7 +141,7 @@ class SearchResults extends Component {
                 {!isFetchingAgents && agents.map(agent => <Agent agent={agent} key={agent.id} />)}
 
                 {isFetchingAgents
-                && <AgentHolderShimmer shimmerIterator={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]} />}
+                && <AgentHolderShimmer shimmerIterator={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]} />}
 
                 <StyledFlex alignItems="center" justifyContent="center" style={{ marginTop: "30px" }}>
                   <Pagination

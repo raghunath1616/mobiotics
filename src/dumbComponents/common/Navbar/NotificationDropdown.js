@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import styled from "styled-components"
 import { Flex, Box } from "@rebass/grid
 import axios from "axios"
-import Moment from "react-moment"
 
 const StyledDropdown = styled.div`
   position: relative;
@@ -205,9 +204,6 @@ class NotificationDropdown extends Component {
                         {notification.title}
                       </NotificationText>
                       <NotificationTime>
-                        <Moment fromNow ago>
-                          {notification.updatedAt}
-                        </Moment>
                         &nbsp; ago
                       </NotificationTime>
                     </Box>
@@ -252,9 +248,6 @@ class NotificationDropdown extends Component {
                           {notification.title.length > 70 ? notification.title.substring(0,70) + '...' : notification.title}
                         </NotificationText>
                         <NotificationTime>
-                          <Moment fromNow ago>
-                            {notification.updatedAt}
-                          </Moment>
                           &nbsp; ago
                         </NotificationTime>
                       </Box>

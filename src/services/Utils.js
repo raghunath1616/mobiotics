@@ -35,7 +35,7 @@ export const mapLocation = (request, payload) => {
   } else {
     delete request.randomSeed
   }
-  request.facade = (payload) ? !payload.facadesNotRequired : true
+  request.facade = payload ? !payload.facadesNotRequired : true
   if (payload) {
     request.fullname = payload.fullname
     request.searchString = payload.searchString
@@ -96,3 +96,22 @@ export const mapLocation = (request, payload) => {
   return request
 }
 
+export const getInitials = (name) => {
+  let initials = name.match(/\b\w/g) || []
+  initials = ((initials.shift() || "") + (initials.pop() || "")).toUpperCase()
+  return initials
+}
+
+export function getEpoch(customDate = new Date()) {
+  return parseInt(customDate.getTime() / 1000)
+}
+
+export const unixToDate = (input) => {
+  try {
+    const a = new Date(0)
+    a.setUTCSeconds(input)
+    return a
+  } catch (e) {
+    return "invalid date"
+  }
+}

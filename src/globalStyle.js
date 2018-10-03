@@ -1,6 +1,6 @@
-import { injectGlobal } from "styled-components";
-import CarraraBoldWoff2 from "./library/fonts/carrara-bol-webfont.woff2";
-import CarraraBoldWoff from "./library/fonts/carrara-bol-webfont.woff";
+import { injectGlobal } from "styled-components"
+import CarraraBoldWoff2 from "./library/fonts/carrara-bol-webfont.woff2"
+import CarraraBoldWoff from "./library/fonts/carrara-bol-webfont.woff"
 export const globalStyle = injectGlobal`
 
   @font-face {
@@ -119,4 +119,23 @@ export const globalStyle = injectGlobal`
         width : 1170px;
       }
   }
-`;
+
+  .padding-container {
+      padding-right: auto;
+      padding-left: auto;
+      padding-left: 15px;
+      padding-right: 15px;     
+      
+      @media(min-width: 768px) {
+        width : 750px;
+      }
+
+      @media(min-width: 992px) {
+        width : 970px;
+      }
+
+      @media(min-width: 1200px) {
+        width : 1170px;
+      }
+  }
+`

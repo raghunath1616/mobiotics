@@ -1,9 +1,11 @@
-import React from "react"
+import React, { Component } from "react"
 import styled from "styled-components"
 import { Flex, Box } from "@rebass/grid"
+import getYear from "date-fns/get_year"
 import Heading from "dumbComponents/common/Typography/Heading"
 import Paragraph from "dumbComponents/common/Typography/Paragraph"
 import { ShimmerBox } from "shared/styles/animation"
+import ProfileImage from "dumbComponents/common/ProfileImage"
 
 const StyledFlex = styled(Flex)`
   margin: 20px 0 0;
@@ -29,12 +31,12 @@ const StyledBox = styled(Box)`
   }
 `
 
-const StyledImage = styled.img`
-  border-radius: 6px;
-  height: 140px;
-  width: 140px;
-  object-fit: cover;
-`
+// const StyledImage = styled.img`
+//   border-radius: 6px;
+//   height: 140px;
+//   width: 140px;
+//   object-fit: cover;
+// `
 
 const StyledHeading = styled(Heading)`
   font-size: 24px;
@@ -78,41 +80,68 @@ const StyledMobileAnchor = styled.a`
   text-decoration: underline;
 `
 
-const Agent = (props) => {
-  const { agent } = props
-  return (
-    <StyledFlex>
-      <StyledBox width={[1, 1, 1 / 5]}>
-        <StyledImage src={agent.agent_image} height="140" />
-      </StyledBox>
-      <StyledBox width={[1, 1, 4 / 5]}>
-        <StyledFlexFlow alignItems="center" justifyContent="space-between" style={{ margin: "0 10px" }}>
-          <StyledHeading>{agent.firstname + " " + agent.lastname}</StyledHeading>
-          <StyledAnchor href={agent.profile_url} target="_blank">
-            View profile
-          </StyledAnchor>
-        </StyledFlexFlow>
-        <StyledFlexFlow>
-          <StyledBox width={[1, 1, 1 / 2]}>
-            <StyledParagraph>{agent.agency_name}</StyledParagraph>
-            <StyledParagraph>{agent.display_email}</StyledParagraph>
-            <StyledParagraph>{agent.phone}</StyledParagraph>
-            <StyledParagraph>
-              {agent.office_city}, {agent.office_state}
-            </StyledParagraph>
-          </StyledBox>
-          <StyledBox width={[1, 1, 1 / 2]}>
-            <StyledParagraph>CRS Designee since 2014</StyledParagraph>
-          </StyledBox>
-          <StyledViewProfile>
-            <StyledMobileAnchor href={agent.profile_url} target="_blank">
+class Agent extends Component {
+  state = {
+    allowImage: true,
+  }
+
+  onErrorLoad = () => {
+    this.setState({ allowImage: false })
+  }
+
+  render() {
+    const { agent } = this.props
+    const { allowImage } = this.state
+    return (
+      <StyledFlex>
+        <StyledBox width={[1, 1, 1 / 5]}>
+          <ProfileImage
+            image={agent.agent_image}
+            name={agent.lastname !== null ? `${agent.firstname} ${agent.lastname}` : agent.firstname}
+            allowImage={allowImage}
+            onErrorLoad={this.onErrorLoad}
+          />
+        </StyledBox>
+        <StyledBox width={[1, 1, 4 / 5]}>
+          <StyledFlexFlow alignItems="center" justifyContent="space-between" style={{ margin: "0 10px" }}>
+            <StyledAnchor href={`${agent.profile_url}?isAreaa=true`} style={{ textDecoration: "none" }} target="_blank">
+              <StyledHeading>{`${agent.firstname} ${agent.lastname}`}</StyledHeading>
+            </StyledAnchor>
+            <StyledAnchor href={`${agent.profile_url}?isAreaa=true`} target="_blank">
               View profile
-            </StyledMobileAnchor>
-          </StyledViewProfile>
-        </StyledFlexFlow>
-      </StyledBox>
-    </StyledFlex>
-  )
+            </StyledAnchor>
+          </StyledFlexFlow>
+          <StyledFlexFlow>
+            <StyledBox width={[1, 1, 1 / 2]}>
+              <StyledParagraph>{agent.agency_name}</StyledParagraph>
+              <StyledParagraph>{agent.display_email}</StyledParagraph>
+              <StyledParagraph>{agent.phone}</StyledParagraph>
+              <StyledParagraph>
+                {agent.office_city}
+,
+                {agent.office_state}
+              </StyledParagraph>
+            </StyledBox>
+            <StyledBox width={[1, 1, 1 / 2]}>
+              {agent.crs_designee_since !== null && agent.crs_designee_since !== "0000-00-00"
+              && (
+                <StyledParagraph>
+                  CRS Designee since
+                  &nbsp;
+                  {getYear(agent.crs_designee_since)}
+                </StyledParagraph>
+              )}
+            </StyledBox>
+            <StyledViewProfile>
+              <StyledMobileAnchor href={`${agent.profile_url}?isAreaa=true`} target="_blank">
+                View profile
+              </StyledMobileAnchor>
+            </StyledViewProfile>
+          </StyledFlexFlow>
+        </StyledBox>
+      </StyledFlex>
+    )
+  }
 }
 
 export const Shimmer = (props) => {
