@@ -29,9 +29,10 @@ class SearchResults extends Component {
   state = {
     place: null,
     request: {
-      crs: true,
+      areaa: true,
       size: limit,
       from: 0,
+      fullname: "",
       sortByEntity: "random",
       sortIsAsc: true,
     },
