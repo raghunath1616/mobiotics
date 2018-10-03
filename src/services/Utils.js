@@ -36,7 +36,7 @@ export const mapLocation = (request, payload) => {
     delete request.randomSeed
   }
   request.facade = payload ? !payload.facadesNotRequired : true
-  request.fullname = payload.fullname
+  request.fullname = payload ? payload.fullname : ""
   if (payload && payload.searchString !== "") {
     request.searchString = payload.searchString
     request.type = "LOCATION"
