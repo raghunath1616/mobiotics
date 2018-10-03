@@ -39,6 +39,7 @@ export const mapLocation = (request, payload) => {
   if (payload) {
     request.fullname = payload.fullname
     request.searchString = payload.searchString
+    request.type = "LOCATION"
     const { location } = payload
     if (location) {
       location.addressComponents.forEach((place, index) => {
