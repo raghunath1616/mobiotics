@@ -40,57 +40,59 @@ export const mapLocation = (request, payload) => {
     request.fullname = payload.fullname
     request.searchString = payload.searchString
     const { location } = payload
-    location.addressComponents.forEach((place, index) => {
-      if (index === 0) {
-        if (place.types[0] === "postal_code") {
-          request.zip = place.long_name
-        } else if (
-          place.types[0] !== "administrative_area_level_1"
-          && place.types[0] !== "country"
-          && place.types[0] !== "postal_code"
-        ) {
-          request.nearbylocation = place.types[0] !== "street_number"
-            ? location.addressComponents[0].long_name
-            : location.addressComponents[1].long_name
-        }
-      }
-
-      switch (place.types[0]) {
-        case "natural_feature":
-          if (place.long_name.indexOf(", ") > -1) {
-            request.city = place.long_name.split(",")[0]
-          } else {
-            request.city = place.long_name
+    if (location) {
+      location.addressComponents.forEach((place, index) => {
+        if (index === 0) {
+          if (place.types[0] === "postal_code") {
+            request.zip = place.long_name
+          } else if (
+            place.types[0] !== "administrative_area_level_1"
+            && place.types[0] !== "country"
+            && place.types[0] !== "postal_code"
+          ) {
+            request.nearbylocation = place.types[0] !== "street_number"
+              ? location.addressComponents[0].long_name
+              : location.addressComponents[1].long_name
           }
-          break
-        case "locality":
-          if (place.long_name.indexOf(", ") > -1) {
-            request.city = place.long_name.split(",")[0]
-          } else {
-            request.city = place.long_name
-          }
-          break
-        case "administrative_area_level_1":
-          request.state = place.long_name
-          request.stateShort = place.short_name
-          break
-        case "country":
-          request.country = place.long_name
-          break
-        default:
-          break
-      }
-
-      if (request.nearbylocation && request.nearbylocation !== "") {
-        if (request.nearbylocation.indexOf(", ") > -1) {
-          request.city = request.nearbylocation.split(",")[0]
-        } else {
-          request.city = request.nearbylocation
         }
-      }
 
-      delete request.nearbylocation
-    })
+        switch (place.types[0]) {
+          case "natural_feature":
+            if (place.long_name.indexOf(", ") > -1) {
+              request.city = place.long_name.split(",")[0]
+            } else {
+              request.city = place.long_name
+            }
+            break
+          case "locality":
+            if (place.long_name.indexOf(", ") > -1) {
+              request.city = place.long_name.split(",")[0]
+            } else {
+              request.city = place.long_name
+            }
+            break
+          case "administrative_area_level_1":
+            request.state = place.long_name
+            request.stateShort = place.short_name
+            break
+          case "country":
+            request.country = place.long_name
+            break
+          default:
+            break
+        }
+
+        if (request.nearbylocation && request.nearbylocation !== "") {
+          if (request.nearbylocation.indexOf(", ") > -1) {
+            request.city = request.nearbylocation.split(",")[0]
+          } else {
+            request.city = request.nearbylocation
+          }
+        }
+
+        delete request.nearbylocation
+      })
+    }
   }
 
   return request

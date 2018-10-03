@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import Container from "container/SearchAgents"
 import Textbox from "dumbComponents/common/UI/Textbox"
 import Button from "dumbComponents/common/UI/Button"
 import GoogleAutocompleteTextbox from "dumbComponents/common/UI/GoogleAutocompleteTextbox"
@@ -33,7 +34,7 @@ const StyledButton = styled(Button)`
 
 const StyledTextbox = styled(Textbox)`
   border-left: none;
-  border-top-left-radius : none;
+  border-top-left-radius: none;
   border-bottom-left-radius: none;
   height: 50px;
   &:focus {
@@ -45,7 +46,7 @@ const StyledTextbox = styled(Textbox)`
 
 const StyledGoogleAutocompleteTextbox = styled(GoogleAutocompleteTextbox)`
   border-left: none;
-  border-top-left-radius : none;
+  border-top-left-radius: none;
   border-bottom-left-radius: none;
   height: 50px;
   &:focus {
@@ -63,7 +64,7 @@ const StyledBox = styled(Box)`
 `
 
 const SearchBar = (props) => {
-  const { location, onSearch } = props
+  const { location, onSearch, request } = props
   return (
     <div style={{ background: "#f0f0f1" }}>
       <div className="container">
@@ -71,7 +72,11 @@ const SearchBar = (props) => {
           <StyledBox width={[1, 1, 1 / 3]} pr={[0, 0, 15]}>
             <Flex>
               <StyledImage src="https://s3.amazonaws.com/cdn.agentdesks.com/images/user-icon.png" />
-              <StyledTextbox placeholder="Search agent name" id="txtName" />
+              <StyledTextbox
+                placeholder="Search agent name"
+                id="txtName"
+                defaultValue={request ? request.fullname : ""}
+              />
             </Flex>
           </StyledBox>
           <StyledBox width={[1, 1, 1 / 3]} pl={[0, 0, 15]}>
@@ -82,6 +87,7 @@ const SearchBar = (props) => {
                 type={["geocode"]}
                 location={location}
                 placeholder="City, State or Zip"
+                defaultValue={request ? request.searchString : ""}
               />
             </Flex>
           </StyledBox>
@@ -96,4 +102,4 @@ const SearchBar = (props) => {
   )
 }
 
-export default SearchBar
+export default Container(SearchBar)
