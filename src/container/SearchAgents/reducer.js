@@ -1,4 +1,10 @@
-import { fetchAgentsAction, sendAppLinkToDownloadAction, SAVE_REQ_PARAMS } from "./actions"
+import { toast } from "react-toastify"
+import {
+  fetchAgentsAction,
+  sendAppLinkToDownloadAction,
+  SAVE_REQ_PARAMS,
+  UPDATE_PHONE_NUMBER,
+} from "./actions"
 
 const initState = {
   isFetchingAgents: true,
@@ -6,6 +12,8 @@ const initState = {
   agents: [],
   agentsTotalCount: 0,
   facades: [],
+  countryCode: "1",
+  isSendingAppLink: false,
 }
 
 export default function SearchAgentsReducer(state = initState, action) {
@@ -25,9 +33,9 @@ export default function SearchAgentsReducer(state = initState, action) {
           ...state,
           isFetchingAgents: false,
           isFilterFetching: false,
-          agents: agents,
-          agentsTotalCount: agentsTotalCount,
-          facades: facades,
+          agents,
+          agentsTotalCount,
+          facades,
         }
       }
       return {
@@ -47,11 +55,25 @@ export default function SearchAgentsReducer(state = initState, action) {
       }
     }
 
-    case sendAppLinkToDownloadAction.SUCCESS:
-    case sendAppLinkToDownloadAction.FAILURE: {
+    case sendAppLinkToDownloadAction.REQUEST: {
+      const { data } = action
+      console.log("request", data)
       return {
         ...state,
-        phone: null,
+        phone: data.phone,
+        countryCode: data.countryCode,
+        isSendingAppLink: true,
+      }
+    }
+
+    case sendAppLinkToDownloadAction.SUCCESS:
+    case sendAppLinkToDownloadAction.FAILURE: {
+      console.log("state", state)
+      toast.success("Successfully sent")
+      return {
+        ...state,
+        phone: "",
+        isSendingAppLink: false,
       }
     }
 
@@ -59,6 +81,14 @@ export default function SearchAgentsReducer(state = initState, action) {
       return {
         ...state,
         request: action.data,
+      }
+    }
+
+    case UPDATE_PHONE_NUMBER: {
+      const { phone } = action.data
+      return {
+        ...state,
+        phone,
       }
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 import { Flex, Box } from "@rebass/grid"
+import { toast } from "react-toastify"
 import Container from "container/SearchAgents"
 import Textbox from "dumbComponents/common/UI/Textbox"
 import Button from "dumbComponents/common/UI/Button"

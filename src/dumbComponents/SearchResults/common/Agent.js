@@ -110,7 +110,9 @@ class Agent extends Component {
                 style={{ textDecoration: "none" }}
                 target="_blank"
               >
-                <StyledHeading>{`${agent.firstname} ${agent.lastname}`}</StyledHeading>
+                <StyledHeading>
+                  {agent.lastname !== null ? `${agent.firstname} ${agent.lastname}` : agent.firstname}
+                </StyledHeading>
               </StyledAnchor>
               <StyledAnchor href={`${agent.profile_url}?isAreaa=true`} target="_blank">
                 View profile

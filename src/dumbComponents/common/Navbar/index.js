@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Flex, Box } from "@rebass/grid"
 import styled from "styled-components"
 
@@ -104,11 +105,13 @@ const Navbar = () => (
     <Flex alignItems="center">
       <ContainerBox className="container">
         <Brand>
-          <img
-            src="https://s3.amazonaws.com/icons.agentdesks.com/mail_api/areaa_logo.png"
-            height={65}
-            alt="Asian Real Estate Association of America"
-          />
+          <Link to="/">
+            <img
+              src="https://s3.amazonaws.com/icons.agentdesks.com/mail_api/areaa_logo.png"
+              height={65}
+              alt="Asian Real Estate Association of America"
+            />
+          </Link>
         </Brand>
         <NavCollapse>
           <NavRight>

@@ -26,7 +26,7 @@ const StyledParagraph = styled(Paragraph)`
 `
 
 const EmptyStateWrapper = styled(Flex)`
-  align-items : center;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 60vh;
@@ -81,7 +81,7 @@ class SearchResults extends Component {
         location: place,
         fullname: document.getElementById("txtName").value,
         searchString: document.getElementById("txtAutocomplete").value,
-      },
+      }
     )
     fetchAgents(data)
     this.setState({ currentPage: 1 })
@@ -96,6 +96,8 @@ class SearchResults extends Component {
     }
     this.setState({ currentPage: page })
     fetchAgents(newRequest)
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
   }
 
   sortResults = (status) => {
@@ -123,10 +125,7 @@ class SearchResults extends Component {
 
   render() {
     const {
-      agents,
-      agentsTotalCount,
-      isFetchingAgents,
-      isFilterFetching,
+      agents, agentsTotalCount, isFetchingAgents, isFilterFetching,
     } = this.props
     const { currentPage, pageSize, sortBy } = this.state
     return (
@@ -147,15 +146,12 @@ class SearchResults extends Component {
             </Flex>
             <Flex>
               <Box width={[1, 1, 2 / 3]}>
-                {
-                  !isFetchingAgents
-                  && (agentsTotalCount > 0
-                    ? agents.map(agent => <Agent agent={agent} key={agent.id} />)
-                    : <EmptyState />)
-                }
+                {!isFetchingAgents
+                  && (agentsTotalCount > 0 ? agents.map(agent => <Agent agent={agent} key={agent.id} />) : <EmptyState />)}
 
-                {isFetchingAgents
-                && <AgentHolderShimmer shimmerIterator={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]} />}
+                {isFetchingAgents && (
+                  <AgentHolderShimmer shimmerIterator={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]} />
+                )}
 
                 {agentsTotalCount > 0 && (
                   <StyledFlex alignItems="center" justifyContent="center" style={{ marginTop: "30px" }}>

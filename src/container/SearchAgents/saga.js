@@ -18,10 +18,12 @@ export function* fetchAgents(action) {
 
 export function* sendAppLinkToDownload(action) {
   try {
-    const res = yield call(sendAppLinkToDownloadAPI, action.data)
-    yield put(sendAppLinkToDownload.success(res))
+    console.log("action", action)
+    const { data: { phone, countryCode } } = action
+    const res = yield call(sendAppLinkToDownloadAPI, { phone: countryCode + phone })
+    yield put(sendAppLinkToDownloadAction.success(res))
   } catch (e) {
-    yield put(sendAppLinkToDownload.failure(e))
+    yield put(sendAppLinkToDownloadAction.failure(e))
   }
 }
 

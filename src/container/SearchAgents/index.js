@@ -12,6 +12,8 @@ const mapStateToProps = (state) => {
     isFetchingAgents,
     isFilterFetching,
     phone,
+    countryCode,
+    isSendingAppLink,
   } = searchAgents
   return {
     agents,
@@ -21,16 +23,23 @@ const mapStateToProps = (state) => {
     isFetchingAgents,
     isFilterFetching,
     phone,
+    countryCode,
+    isSendingAppLink,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    ...bindActionCreators({
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(
+    {
       fetchAgents: SearchActions.fetchAgentsAction.request,
       sendAppLinkToDownload: SearchActions.sendAppLinkToDownloadAction.request,
-    }, dispatch),
-  }
-}
+      updatePhoneNumber: SearchActions.updatePhoneNumber,
+    },
+    dispatch
+  ),
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
