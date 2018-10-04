@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const Wrapper = styled.div`
   margin: 0 0;
+  display: grid;
 `
 
 const StyledCheckbox = styled.input`
@@ -14,7 +15,6 @@ const StyledCheckbox = styled.input`
     cursor: pointer;
     padding: 0;
     white-space: nowrap;
-    max-width: 80%;
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
