@@ -26,6 +26,8 @@ const WrapperFilter = styled(Flex)`
   flex-flow: column wrap;
   border-bottom: solid 1px #f2f2f3;
   padding-bottom: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:last-child {
     border-bottom: none;
   }
