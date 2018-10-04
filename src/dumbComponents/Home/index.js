@@ -285,7 +285,10 @@ class Home extends Component {
               </FormInputContainer>
             </FormElement>
           </Form>
-          <Heading type="h5">Powered by Radius Agent</Heading>
+          <Heading type="h5" style={{ display: "flex", alignItems: "center", color: "#ffffff" }}>
+            Powered by
+            <img src="//d2fedz0by71ckz.cloudfront.net/images/radius-logo%403x.png" style={{ paddingLeft: "10px" }} height="28" alt="radius agent" />
+          </Heading>
         </Wrapper>
       </React.Fragment>
     )
