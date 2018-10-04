@@ -25,7 +25,7 @@ const Footer = styled.div`
 `
 
 const HeroImage = styled.div`
-  background-image: url(https://d2fedz0by71ckz.cloudfront.net/images/background-image-crs.jpg);
+  background-image: rgba(255, 0, 0, 0.25), url(https://d2fedz0by71ckz.cloudfront.net/images/background-image-crs.jpg);
   background-size: cover;
   height: 88vh;
   display: flex;
@@ -67,6 +67,7 @@ const StyledGoogleAutocompleteTextbox = styled(GoogleAutocompleteTextbox)`
   border-bottom: none;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  font-size: 20px;
   @media screen and (max-width: 767px) {
     margin-bottom: 10px;
     height: 50px;
@@ -88,7 +89,8 @@ const Wrapper = styled(Flex)`
   min-height: 90vh;
   justify-content: center;
   align-items: center;
-  background: url("https://d2fedz0by71ckz.cloudfront.net/images/Policy+Day+2018.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("https://d2fedz0by71ckz.cloudfront.net/images/Policy+Day+2018.jpg");
   background-size: cover;
   background-position: center center;
   padding: 15px;
