@@ -60,21 +60,15 @@ const StyledTextbox = styled(Textbox)`
 
 const StyledGoogleAutocompleteTextbox = styled(GoogleAutocompleteTextbox)`
   height: 68px;
+  padding: 0 32px;
   border-left: none;
   border-top: none;
   border-bottom: none;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  @media (max-width: 500px) {
+  @media screen and (max-width: 767px) {
     margin-bottom: 10px;
-  }
-  &.placeholder {
-    color: #9a9a9a;
-    font-size: 20px;
-  }
-  &:-moz-placeholder {
-    color: #9a9a9a;
-    font-size: 20px;
+    height: 50px;
   }
 `
 
@@ -93,7 +87,7 @@ const Wrapper = styled(Flex)`
   min-height: 90vh;
   justify-content: center;
   align-items: center;
-  background: url("https://d2fedz0by71ckz.cloudfront.net/images/hero-unsigned-referral-img.png");
+  background: url("https://d2fedz0by71ckz.cloudfront.net/images/Policy+Day+2018.jpg");
   background-size: cover;
   background-position: center center;
   padding: 15px;
@@ -105,12 +99,54 @@ const Form = styled.form`
   max-width: 1290px;
 `
 
+const FormFieldSet = styled.fieldset`
+  margin: 0;
+  padding: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-before: 0;
+  -webkit-padding-start: 0;
+  -webkit-padding-end: 0;
+  -webkit-padding-after: 0;
+  border: 0;
+  padding: 0.35rem 0.75rem 0.625rem;
+`
+
+const FormLegend = styled.legend`
+  font-size: 72px;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 60px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  -webkit-padding-start: 0;
+  -webkit-padding-end: 0;
+  @media screen and (max-width: 992px) {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+`
+
 const FormElement = styled(Flex)`
   background: rgba(0, 0, 0, 0.5);
   padding: 50px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 992px) {
+    padding: 30px 35px;
+  }
+
+  @media screen and (max-width: 767px) {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
 `
 
 const FormInputContainer = styled.div`
@@ -119,25 +155,34 @@ const FormInputContainer = styled.div`
   flex-grow: ${props => props.flexGrow};
   width: ${props => props.width};
   min-width: ${props => props.minWidth};
+  @media screen and (max-width: 992px) {
+    height: 50px;
+  }
+  @media screen and (max-width: 767px) {
+    margin-right: 0;
+    &.first-wrap {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    &.second-wrap {
+      width: calc(50% - 10px);
+      min-width: auto;
+    }
+    &.third-wrap {
+      width: calc(50% - 10px);
+    }
+  }
 `
 
-const FormInput = styled.input`
+const FormInput = styled(Textbox)`
   height: 100%;
   background: #fff;
   border-radius: 0.5px;
   border: 0;
   display: block;
-  width: 80%;
+  width: 100%;
   padding: 0 32px;
   font-size: 20px;
-  &.placeholder {
-    color: #9a9a9a;
-    font-size: 20px;
-  }
-  &:-moz-placeholder {
-    color: #9a9a9a;
-    font-size: 20px;
-  }
   &:hover,
   &:focus {
     box-shadow: none;
@@ -159,6 +204,9 @@ const SearchButton = styled.button`
   &:hover {
     background: #2d62d3;
   }
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+  }
 `
 
 class Home extends Component {
@@ -167,7 +215,6 @@ class Home extends Component {
   }
 
   searchAgents = (event) => {
-    console.log("event", event)
     event.preventDefault()
     const { history } = this.props
     const { location } = this.state
@@ -214,11 +261,14 @@ class Home extends Component {
         </FlexContainer> */}
         <Wrapper>
           <Form onSubmit={this.searchAgents}>
+            <FormFieldSet>
+              <FormLegend>Find AREAA Members</FormLegend>
+            </FormFieldSet>
             <FormElement>
-              <FormInputContainer flexGrow="1">
-                <FormInput id="txtName" type="text" placeholder="Name" />
+              <FormInputContainer width="32.77%" className="first-wrap">
+                <FormInput id="txtName" className="first-wrap" type="text" placeholder="Name" />
               </FormInputContainer>
-              <FormInputContainer width="32.77%" minWidth="180px">
+              <FormInputContainer width="32.77%" className="second-wrap" minWidth="180px">
                 <StyledGoogleAutocompleteTextbox
                   id="txtAutocomplete"
                   type={["geocode"]}
@@ -227,7 +277,7 @@ class Home extends Component {
                   placeholder="City, State or Zip"
                 />
               </FormInputContainer>
-              <FormInputContainer width="180px" marginRight="0">
+              <FormInputContainer width="180px" className="third-wrap" marginRight="0">
                 <SearchButton type="submit">Search</SearchButton>
               </FormInputContainer>
             </FormElement>
