@@ -57,11 +57,13 @@ class FilterContainer extends Component {
             </StyledBox>
           ))
         }
-        <ShowMoreWrapper width="100%">
-          <ShowMoreAnchor href="javascript:void(0)" onClick={() => onAction(title)}>
-            { mapper[title].expand ? "Show less" : "Show more" }
-          </ShowMoreAnchor>
-        </ShowMoreWrapper>
+        {filter && filter.length > 10 && (
+          <ShowMoreWrapper width="100%">
+            <ShowMoreAnchor href="javascript:void(0)" onClick={() => onAction(title)}>
+              { mapper[title].expand ? "Show less" : "Show more" }
+            </ShowMoreAnchor>
+          </ShowMoreWrapper>
+        )}
       </WrapperFilter>
     )
   }

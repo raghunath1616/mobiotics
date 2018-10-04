@@ -14,7 +14,8 @@ const StyledCheckbox = styled.input`
     cursor: pointer;
     padding: 0;
     white-space: nowrap;
-    width: 90%;
+    max-width: 80%;
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
   }
