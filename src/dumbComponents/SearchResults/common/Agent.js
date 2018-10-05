@@ -130,6 +130,7 @@ class Agent extends Component {
               </StyledBox>
               <StyledBox width={[1, 1, 1 / 2]}>
                 {agent.realtor_since_year !== null
+                  && agent.realtor_since_year !== ""
                   && agent.realtor_since_year !== "0000-00-00" && (
                   <StyledParagraph>{`Agent since ${agent.realtor_since_year}`}</StyledParagraph>
                 )}
