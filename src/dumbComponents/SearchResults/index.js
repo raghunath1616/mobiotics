@@ -76,7 +76,8 @@ class SearchResults extends Component {
 
   handleLocation = location => this.setState({ place: location })
 
-  searchAgents = () => {
+  searchAgents = (event) => {
+    event.preventDefault()
     const { fetchAgents } = this.props
     const { place, request } = this.state
     const data = mapLocation(

@@ -68,35 +68,37 @@ const SearchBar = (props) => {
   return (
     <div style={{ background: "#f0f0f1" }}>
       <div className="container">
-        <WrapperSearchBar>
-          <StyledBox width={[1, 1, 1 / 3]} pr={[0, 0, 15]}>
-            <Flex>
-              <StyledImage src="https://s3.amazonaws.com/cdn.agentdesks.com/images/user-icon.png" />
-              <StyledTextbox
-                placeholder="Search agent name"
-                id="txtName"
-                defaultValue={request ? request.fullname : ""}
-              />
-            </Flex>
-          </StyledBox>
-          <StyledBox width={[1, 1, 1 / 3]} pl={[0, 0, 15]}>
-            <Flex>
-              <StyledImage src="https://s3.amazonaws.com/cdn.agentdesks.com/images/location-icon.png" />
-              <StyledGoogleAutocompleteTextbox
-                id="txtAutocomplete"
-                type={["geocode"]}
-                location={location}
-                placeholder="City, State or Zip"
-                defaultValue={request ? request.searchString : ""}
-              />
-            </Flex>
-          </StyledBox>
-          <StyledBox width={[1, 1, 1 / 3]} pl={[0, 0, 20]}>
-            <Flex>
-              <StyledButton onClick={onSearch}>Search</StyledButton>
-            </Flex>
-          </StyledBox>
-        </WrapperSearchBar>
+        <form onSubmit={onSearch}>
+          <WrapperSearchBar>
+            <StyledBox width={[1, 1, 1 / 3]} pr={[0, 0, 15]}>
+              <Flex>
+                <StyledImage src="https://s3.amazonaws.com/cdn.agentdesks.com/images/user-icon.png" />
+                <StyledTextbox
+                  placeholder="Search agent name"
+                  id="txtName"
+                  defaultValue={request ? request.fullname : ""}
+                />
+              </Flex>
+            </StyledBox>
+            <StyledBox width={[1, 1, 1 / 3]} pl={[0, 0, 15]}>
+              <Flex>
+                <StyledImage src="https://s3.amazonaws.com/cdn.agentdesks.com/images/location-icon.png" />
+                <StyledGoogleAutocompleteTextbox
+                  id="txtAutocomplete"
+                  type={["geocode"]}
+                  location={location}
+                  placeholder="City, State or Zip"
+                  defaultValue={request ? request.searchString : ""}
+                />
+              </Flex>
+            </StyledBox>
+            <StyledBox width={[1, 1, 1 / 3]} pl={[0, 0, 20]}>
+              <Flex>
+                <StyledButton type="submit">Search</StyledButton>
+              </Flex>
+            </StyledBox>
+          </WrapperSearchBar>
+        </form>
       </div>
     </div>
   )
