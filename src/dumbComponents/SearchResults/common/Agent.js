@@ -26,6 +26,9 @@ const StyledFlexFlow = styled(Flex)`
 const StyledBox = styled(Box)`
   padding: 0 10px;
   @media (max-width: 500px) {
+    div {
+      margin: 3px auto;
+    }
     text-align: center;
     margin-bottom: 15px;
   }

@@ -18,6 +18,9 @@ const StyledFlex = styled(Flex)`
   width: 140px;
   background-color: #2684ff;
   text-align: center;
+  @media (max-width: 500px) {
+    margin: 0 auto;
+  }
 `
 
 const ProfileImage = ({
