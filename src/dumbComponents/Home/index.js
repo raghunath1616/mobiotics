@@ -26,7 +26,7 @@ const Wrapper = styled(Flex)`
   justify-content: center;
   align-items: center;
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("https://d2fedz0by71ckz.cloudfront.net/images/Policy+Day+2018.jpg");
+    url("https://d2fedz0by71ckz.cloudfront.net/images/Policy+Day+2018.jpg") 50% no-repeat;
   background-size: cover;
   background-position: center center;
   padding: 15px;

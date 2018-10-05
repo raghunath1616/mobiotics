@@ -80,18 +80,20 @@ class Filters extends Component {
   }
 
   filterResults = (key, item) => {
-    const { request, fetchAgents } = this.props
+    const { request, fetchAgents, resetPagination } = this.props
     const { mapper } = this.state
     const newRequest = { ...request }
     if (!newRequest[mapper[key].value]) {
       newRequest[mapper[key].value] = []
     }
     newRequest.facade = false
+    newRequest.from = 0
     newRequest[mapper[key].value] = newRequest[mapper[key].value]
-    && newRequest[mapper[key].value].indexOf(item.key) > -1
+      && newRequest[mapper[key].value].indexOf(item.key) > -1
       ? newRequest[mapper[key].value].filter(filterItem => filterItem !== item.key)
       : newRequest[mapper[key].value].concat(item.key)
     fetchAgents(newRequest)
+    resetPagination()
   }
 
   render() {

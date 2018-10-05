@@ -62,6 +62,10 @@ class SearchResults extends Component {
     ],
   }
 
+  resetPagination = () => {
+    this.setState({ currentPage: 1 })
+  }
+
   componentDidMount() {
     const { fetchAgents, location } = this.props
     const { state } = location
@@ -165,7 +169,7 @@ class SearchResults extends Component {
                 )}
               </Box>
               <Box width={1 / 3}>
-                {!isFilterFetching && <Filters />}
+                {!isFilterFetching && <Filters resetPagination={this.resetPagination} />}
                 {isFilterFetching && <FilterHolderShimmer />}
               </Box>
             </Flex>

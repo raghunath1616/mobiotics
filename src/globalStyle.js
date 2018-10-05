@@ -101,6 +101,10 @@ export const globalStyle = injectGlobal`
     line-height: 1.4;
   }
 
+  a, li { 
+    outline: 0 !important;
+  }
+
   .container {
       margin-right: auto;
       margin-left: auto;
