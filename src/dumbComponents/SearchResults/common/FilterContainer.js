@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Container from "container/SearchAgents"
 import { Flex, Box } from "@rebass/grid"
 import Checkbox from "dumbComponents/common/UI/Checkbox"
+import Paragraph from "dumbComponents/common/Typography/Paragraph"
 
 const StyledBox = styled(Box)`
   margin: 8px 0;
@@ -33,36 +34,44 @@ const WrapperFilter = styled(Flex)`
   }
 `
 
+const EmptyStateText = styled(Paragraph)`
+  text-align: center;
+  margin: 0 auto;
+  font-style: italic;
+  color: #d8d8d8;
+  font-size: 18px;
+`
+
 class FilterContainer extends Component {
   expandOrCollapse = (title) => {
     const { mapper, facades } = this.props
     mapper[title].expand = !mapper[title].expand
-    mapper[title].limit = (mapper[title].expand) ? facades[title].length : 10
+    mapper[title].limit = mapper[title].expand ? facades[title].length : 10
   }
 
   render() {
     const {
-      filter,
-      mapper,
-      title,
-      onAction,
-      onFilter,
+      filter, mapper, title, onAction, onFilter,
     } = this.props
     return (
       <WrapperFilter>
-        {
-          filter && filter.slice(0, mapper[title].limit).map((filterItem, index) => (
+        {filter
+          && filter.slice(0, mapper[title].limit).map((filterItem, index) => (
             <StyledBox key={filterItem.key}>
               <Checkbox id={`${title}-${index}`} onChange={() => onFilter(title, filterItem)}>
                 {`${filterItem.key} (${filterItem.doc_count})`}
               </Checkbox>
             </StyledBox>
-          ))
-        }
-        {filter && filter.length > 10 && (
+          ))}
+        {filter
+          && filter.length === 0 && (
+          <EmptyStateText align="center">{`No ${mapper[title].display.toLowerCase()} filters`}</EmptyStateText>
+        )}
+        {filter
+          && filter.length > 10 && (
           <ShowMoreWrapper width="100%">
             <ShowMoreAnchor href="javascript:void(0)" onClick={() => onAction(title)}>
-              { mapper[title].expand ? "Show less" : "Show more" }
+              {mapper[title].expand ? "Show less" : "Show more"}
             </ShowMoreAnchor>
           </ShowMoreWrapper>
         )}

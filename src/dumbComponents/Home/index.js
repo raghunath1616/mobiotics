@@ -1,63 +1,10 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import { Flex, Box } from "@rebass/grid"
-import { toast } from "react-toastify"
+import { Flex } from "@rebass/grid"
 import Container from "container/SearchAgents"
 import Textbox from "dumbComponents/common/UI/Textbox"
-import Button from "dumbComponents/common/UI/Button"
 import Heading from "dumbComponents/common/Typography/Heading"
 import GoogleAutocompleteTextbox from "dumbComponents/common/UI/GoogleAutocompleteTextbox"
-
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-`
-
-const Footer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: rgba(7, 14, 40, 0.6);
-  padding: 50px;
-`
-
-const HeroImage = styled.div`
-  background-image: rgba(255, 0, 0, 0.25), url(https://d2fedz0by71ckz.cloudfront.net/images/background-image-crs.jpg);
-  background-size: cover;
-  height: 88vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-`
-
-const StyledButton = styled(Button)`
-  background: #2684ff;
-  border-color: #2684ff;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-  padding: 15px 15px;
-  @media (max-width: 500px) {
-    margin-bottom: 10px;
-    width: 100%;
-  }
-`
-
-const StyledTextbox = styled(Textbox)`
-  height: 57px;
-  border-left: none;
-  border-top: none;
-  border-bottom: none;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  @media (max-width: 500px) {
-    margin-bottom: 10px;
-  }
-`
 
 const StyledGoogleAutocompleteTextbox = styled(GoogleAutocompleteTextbox)`
   height: 68px;
@@ -71,17 +18,6 @@ const StyledGoogleAutocompleteTextbox = styled(GoogleAutocompleteTextbox)`
   @media screen and (max-width: 767px) {
     margin-bottom: 10px;
     height: 50px;
-  }
-`
-
-const SearchBox = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  flex-flow: row nowrap;
-  padding: 0 20px;
-  margin-top: 10px;
-  @media (max-width: 500px) {
-    flex-flow: column wrap;
   }
 `
 
@@ -212,6 +148,11 @@ const SearchButton = styled.button`
   }
 `
 
+const PoweredByLogo = styled.img`
+  height: 28px;
+  padding-left: 10px;
+`
+
 class Home extends Component {
   state = {
     location: null,
@@ -235,33 +176,6 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <FlexContainer>
-          <HeroImage>
-            <Flex alignItems="center" justifyContent="center">
-              <img src="https://s3.amazonaws.com/icons.agentdesks.com/mail_api/areaa_logo.png" alt="AREAA" />
-            </Flex>
-            <Footer>
-              <Box width={[1, 1, 3 / 5]}>
-                <SearchBox>
-                  <StyledTextbox placeholder="Name" id="txtName" />
-                  <StyledGoogleAutocompleteTextbox
-                    id="txtAutocomplete"
-                    type={["geocode"]}
-                    location={this.handleLocation}
-                    style={{ borderTopLeftRadius: 0, borderBottomleftRadius: 0 }}
-                    placeholder="City, State or Zip"
-                  />
-                  <StyledButton onClick={this.searchAgents}>Search</StyledButton>
-                </SearchBox>
-              </Box>
-              <Box>
-                <Heading type="h3" color="#ffffff">
-                  Powered by Radius Agent
-                </Heading>
-              </Box>
-            </Footer>
-          </HeroImage>
-        </FlexContainer> */}
         <Wrapper>
           <Form onSubmit={this.searchAgents}>
             <FormFieldSet>
@@ -287,7 +201,7 @@ class Home extends Component {
           </Form>
           <Heading type="h5" style={{ display: "flex", alignItems: "center", color: "#ffffff" }}>
             Powered by
-            <img src="//d2fedz0by71ckz.cloudfront.net/images/radius-logo%403x.png" style={{ paddingLeft: "10px" }} height="28" alt="radius agent" />
+            <PoweredByLogo src="//d2fedz0by71ckz.cloudfront.net/images/radius-logo%403x.png" alt="radius agent" />
           </Heading>
         </Wrapper>
       </React.Fragment>
