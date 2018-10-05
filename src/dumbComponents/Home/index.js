@@ -201,7 +201,7 @@ class Home extends Component {
           </Form>
           <Heading type="h5" style={{ display: "flex", alignItems: "center", color: "#ffffff" }}>
             Powered by
-            <PoweredByLogo src="//d2fedz0by71ckz.cloudfront.net/images/radius-logo%403x.png" alt="radius agent" />
+            <PoweredByLogo src="//d2fedz0by71ckz.cloudfront.net/images/Radius-Logo-White.png" alt="radius agent" />
           </Heading>
         </Wrapper>
       </React.Fragment>
