@@ -41,6 +41,7 @@ export const globalStyle = injectGlobal`
     width: 100%;
     height: 100%;
     margin: 0;
+    background: #f8fbfc;
   }
 
   body {
@@ -73,7 +74,6 @@ export const globalStyle = injectGlobal`
   body,
   html {
     height: 100%;
-    background: #ffffff !important;
   }
 
   body {
@@ -103,43 +103,5 @@ export const globalStyle = injectGlobal`
 
   a, li { 
     outline: 0 !important;
-  }
-
-  .container {
-      margin-right: auto;
-      margin-left: auto;
-      padding-left: 15px;
-      padding-right: 15px;     
-      
-      @media(min-width: 768px) {
-        width : 750px;
-      }
-
-      @media(min-width: 992px) {
-        width : 970px;
-      }
-
-      @media(min-width: 1200px) {
-        width : 1170px;
-      }
-  }
-
-  .padding-container {
-      padding-right: auto;
-      padding-left: auto;
-      padding-left: 15px;
-      padding-right: 15px;     
-      
-      @media(min-width: 768px) {
-        width : 750px;
-      }
-
-      @media(min-width: 992px) {
-        width : 970px;
-      }
-
-      @media(min-width: 1200px) {
-        width : 1170px;
-      }
   }
 `

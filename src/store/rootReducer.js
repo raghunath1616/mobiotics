@@ -1,9 +1,9 @@
 import { combineReducers } from "redux"
 import { routerReducer as routing } from "react-router-redux"
-import SearchAgentsReducer from "container/SearchAgents/reducer"
+import UserReducer from "container/Forms/reducer"
 
 const rootReducer = combineReducers({
-  searchAgents : SearchAgentsReducer,
+  user: UserReducer,
   routing,
 })
 

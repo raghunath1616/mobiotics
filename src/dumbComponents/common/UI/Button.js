@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import colors from "library/colors";
-import { hexRgba } from "library/cssUtils";
+import styled from "styled-components"
+import colors from "library/colors"
+import { hexRgba } from "library/cssUtils"
 
 const btnColors = {
   primary: {
@@ -9,7 +9,7 @@ const btnColors = {
     fontHoverColor: colors.primaryHover,
     borderColor: colors.primaryColor,
     boxShadowColor: colors.primaryColor,
-    disabledColor: colors.disabledColor
+    disabledColor: colors.disabledColor,
   },
   secondary: {
     backgroundColor: colors.white,
@@ -17,9 +17,9 @@ const btnColors = {
     fontHoverColor: colors.primaryHover,
     borderColor: colors.primaryColor,
     boxShadowColor: false,
-    disabledColor: colors.disabledColor
-  }
-};
+    disabledColor: colors.disabledColor,
+  },
+}
 
 const Button = styled.button`
   display: inline-block;
@@ -67,7 +67,7 @@ Button.defaultProps = {
   bsStyle: "primary",
   boxShadow: false,
   border: true,
-  width: "200px",
+  width: "150px",
 }
 
-export default Button;
+export default Button
