@@ -1,20 +1,17 @@
 require("babel-polyfill")
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const publicPath = "/";
-const envConstants = require("./envConstants.prod");
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const webpack = require("webpack")
+const publicPath = "/"
+const envConstants = require("./envConstants.prod")
 
 module.exports = {
-  entry: [
-    "babel-polyfill",
-    "./src/index.js"
-  ],
+  entry: ["babel-polyfill", "./src/index.js"],
   output: {
     pathinfo: true,
     filename: "static/js/bundle.js",
     chunkFilename: "static/js/[name].chunk.js",
-    publicPath: publicPath
+    publicPath,
   },
   resolve: {
     modules: ["src", "node_modules"],
@@ -28,20 +25,20 @@ module.exports = {
         use: [
           {
             loader: "babel-loader",
-          }
-        ]
+          },
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
-        loader: "file-loader"
-      }
-    ]
+        loader: "file-loader",
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "../src/index.html"),
-      filename: "index.html"
+      filename: "index.html",
     }),
-    new webpack.DefinePlugin(envConstants)
-  ]
-};
+    new webpack.DefinePlugin(envConstants),
+  ],
+}
